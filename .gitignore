@@ -1,0 +1,15 @@
+# Outputs generated while reproducing the evaluation.
+__pycache__/
+*.aux
+*.fdb_latexmk
+*.fls
+results/
+*.trt
+*.csv
+*.json
+*.log
+performance_*.txt
+inference_runs.json
+power_samples.csv
+detections.json
+coco_summary.json
