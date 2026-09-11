@@ -143,13 +143,13 @@ g++ -std=c++17 -O2 run_onnx_vitisai_random.cpp -o run_onnx_vitisai_random \
   -I/usr/include -I/usr/include/onnxruntime -lonnxruntime -pthread
 ```
 
-Run the four-worker, 200-iteration random-input benchmark for each supplied
-model. For example:
+Run the four-worker, 25-iteration-per-worker random-input benchmark for each
+supplied model, for 100 measured inferences in total. For example:
 
 ```bash
 python3 vitisai_power_benchmark.py \
   --samples power_samples.csv --summary power_summary.json --stdout benchmark.log \
-  -- ./run_onnx_vitisai_random yolov5nu_leaky_xint8_vai.onnx - /dev/null 200 4
+  -- ./run_onnx_vitisai_random yolov5nu_leaky_xint8_vai.onnx - /dev/null 25 4
 ```
 
 Repeat with `yolov8n_leaky_xint8_vai.onnx` and
@@ -179,14 +179,14 @@ trtexec --onnx="$JETSON_ARTIFACTS/yolov10n_opset11.onnx" \
   --fp16 --explicitBatch --workspace=1024
 ```
 
-Run the single-stream power benchmark with ten warmups, 100 timed inferences,
+Run the single-stream power benchmark with five warmups, 100 timed inferences,
 and 20 ms power sampling:
 
 ```bash
 python3 "$JETSON_ARTIFACTS/benchmark_yolo_trt_power.py" \
   --engine-dir "$JETSON_ARTIFACTS/engines" \
   --out-dir "$JETSON_ARTIFACTS/results" \
-  --warmup 10 --runs 100 --streams 1 --interval-ms 20 --seed 0
+  --warmup 5 --runs 100 --streams 1 --interval-ms 20 --seed 0
 ```
 
 ## Custom-Node Metadata and Runtime Interface

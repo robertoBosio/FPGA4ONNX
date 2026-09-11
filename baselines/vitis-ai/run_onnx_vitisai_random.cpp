@@ -41,7 +41,7 @@ int main(int argc, char** argv) {
   const std::string output_file = (argc >= 4) ? argv[3] : "";
   const int iters = (argc >= 5) ? std::atoi(argv[4]) : 50;
   const int threads = (argc >= 6) ? std::atoi(argv[5]) : 1;
-  const int warmup = 10;
+  const int warmup = 5;
   if (iters <= 0 || threads <= 0) {
     std::cerr << "iters and threads must be positive" << std::endl;
     return 2;
